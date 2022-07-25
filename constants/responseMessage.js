@@ -1,0 +1,23 @@
+module.exports = {
+	created: "Created Successfully.",
+	notFound: "Not Found.",
+	userNotFound: "User Not Found.",
+	badRequest: "Invalid Data Provided.",
+	signupSuccess : "Signup Successfully",
+	unauthorized: "Unauthorized Request.",
+	tokenVerifed: "Token Verifed Successfully",
+	buyerCreatedSuccess : "Buyer Created Successfully.",
+	buyerCreatedFailure : "Buyer Created Failure.",
+	sellerCreatedSuccess : "Seller Created Successfully.",
+	sellerCreatedFailure : "Seller Created Failure.",
+	alreadyExists : "User Already Exists.",
+	userGetSuccess : "User Get Successfully.",
+	userGetFailure : "User Get Failure.",
+	userUpdateSuccess : "User Get Success.",
+	userUpdateFailure : "User Get Failure.",
+	addBankFailed : "Add Bank Failed",
+	addBankSuccess : "Add Bank Success",
+	getBankFailed : "Get Bank Failed",
+	getBankSuccess : "Get Bank Success",
+	getPaymentStatusSuccess : "Get Payment Status Success"
+};
