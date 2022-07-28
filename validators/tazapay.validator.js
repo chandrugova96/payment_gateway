@@ -135,6 +135,103 @@ class TazapayValidation {
 		return baseValidation.validateQuery(req, res, next, schema);
 	};
 
+	kybDocument(req, res, next){
+		const schema = Joi.object({
+			account_id: Joi.string().required(),
+			entity_name : Joi.string().required(),
+			submit : Joi.boolean().required(),
+			callback_url : Joi.string().required(),
+			business : Joi.object({
+				name : Joi.string().required(),
+				type : Joi.string().optional().allow(''),
+				incorporation_no : Joi.string().optional().allow(''),
+				address_line_1 : Joi.string().optional().allow(''),
+				address_line_2 : Joi.string().optional().allow(''),
+				city : Joi.string().optional().allow(''),
+				state : Joi.string().optional().allow(''),
+				country : Joi.string().required().allow(''),
+				zip_code : Joi.string().optional().allow(''),
+				trading_name : Joi.string().optional().allow(''),
+				years_in_business : Joi.string().optional().allow(''),
+				annual_turnover : Joi.string().optional().allow(''),
+				website : Joi.string().optional().allow(''),
+				date_of_incorporation : Joi.string().optional().allow(''),
+				custom_attrs : Joi.object().optional().allow(''),
+				documents: Joi.array().items(
+					Joi.object({
+						description : Joi.string().optional().allow(''),
+						file_name : Joi.string().required(),
+						name : Joi.string().required(),
+						proof_type : Joi.string().required(),
+						type : Joi.string().required(),
+						url : Joi.string().required(),
+					})
+				)
+			}),
+			representative: Joi.object({
+				first_name: Joi.string().required(),
+				last_name: Joi.string().required(),
+				roles: Joi.array().required(),
+				dob: Joi.string().optional().allow(''),
+				address_line_1: Joi.string().optional().allow(''),
+				address_line_2: Joi.string().optional(),
+				city: Joi.string().optional().allow(''),
+				state: Joi.string().optional().allow(''),
+				country: Joi.string().optional().allow(''),
+				zip_code: Joi.string().optional().allow(''),
+				contact_code: Joi.string().optional().allow(''),
+				mobile_number: Joi.string().optional().allow(''),
+				ownership_percent: Joi.number().required(),
+				documents: Joi.array().items(
+					Joi.object({
+						proof_type : Joi.string().required(),
+						type : Joi.string().required(),
+						name : Joi.string().required(),
+						url : Joi.string().required(),
+						file_name : Joi.string().required(),
+						description : Joi.string().optional().allow('')
+					})
+				)
+			}),
+			owner : Joi.array().items(
+				Joi.object({
+					first_name : Joi.string().required(),
+					last_name : Joi.string().required(),
+					roles : Joi.array().required(),
+					dob : Joi.string().optional().allow(''),
+					address_line_1 : Joi.string().optional().allow(''),
+					address_line_2 : Joi.string().optional().allow(''),
+					city : Joi.string().optional().allow(''),
+					state : Joi.string().optional().allow(''),
+					country : Joi.string().optional().allow(''),
+					zip_code : Joi.string().optional().allow(''),
+					contact_code : Joi.string().optional().allow(''),
+					mobile_number : Joi.string().optional().allow(''),
+					ownership_percent : Joi.number().required(),
+					documents: Joi.array().items(
+						Joi.object({
+							proof_type : Joi.string().required(),
+							type : Joi.string().required(),
+							name : Joi.string().required(),
+							url : Joi.string().required(),
+							file_name : Joi.string().required(),
+							description : Joi.string().optional().allow('')
+						})
+					)
+				})
+			)
+		});
+		return baseValidation.validateBody(req, res, next, schema);
+	};
+
+	getKYBDocument(req, res, next){
+		const schema = Joi.object({
+			application_id: Joi.string().required()
+		});
+		return baseValidation.validateQuery(req, res, next, schema);
+	};
+
+
 }
 
 module.exports = new TazapayValidation();

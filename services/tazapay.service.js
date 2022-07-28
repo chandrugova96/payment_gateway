@@ -143,6 +143,38 @@ TazaPayService.getRefundPaymentStatus = async (txn_no) => {
     }
 };
 
+TazaPayService.getKYBDocument = async (application_id) => {
+    try {
+        let data = await tazapayHealper.makeRequest("GET", `/v2/kyb/${application_id}`);
+        return data.body;
+    } catch (err) {
+        return err;
+    }
+};
+
+TazaPayService.kybDocument = async (req) => {
+    try {
+        let body = req.body;
+        body['application_type'] = 'Business';
+        let data = await tazapayHealper.makeRequest("POST", "/v2/kyb", body);
+        return data.body;
+    } catch (err) {
+        return err;
+    }
+};
+
+TazaPayService.updateKYBDocument = async (req) => {
+    try {
+        let body = req.body;
+        body['application_type'] = 'Business';
+        let { application_id } = req.body;
+        let user = await tazapayHealper.makeRequest("PUT", `/v2/kyb/${application_id}`, body);
+        return user.body;
+    } catch (err) {
+        return err;
+    }
+};
+
 TazaPayService.getInvoiceCurrency = async (query) => {
     try {
         let data = await tazapayHealper.makeRequest("GET", `/v1/metadata/invoicecurrency?buyer_country=${query.buyer_country}&seller_country=${query.seller_country}`);

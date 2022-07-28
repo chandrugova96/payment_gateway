@@ -19,5 +19,9 @@ module.exports = {
 	addBankSuccess : "Add Bank Success",
 	getBankFailed : "Get Bank Failed",
 	getBankSuccess : "Get Bank Success",
-	getPaymentStatusSuccess : "Get Payment Status Success"
+	getPaymentStatusSuccess : "Get Payment Status Success",
+	kycSuccess : "KYB Updated Success",
+	kycFailure : "KYB Updated Failed",
+	getKYBSuccess : "Get KYB Document Success",
+	getKYBFailure : "Get KYB Document Failed"
 };

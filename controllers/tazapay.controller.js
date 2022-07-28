@@ -175,6 +175,54 @@ TazaPayController.getRefundPaymentStatus = async (req, res, next) => {
     }
 };
 
+TazaPayController.getKYBDocument = async (req, res, next) => {
+    try {
+        let data = await tazapayService.getKYBDocument(req.query.application_id);
+        if (data && data.data) {
+            logger.error(responseMessage.getKYBSuccess);
+            return response.success(req, res, statusCodes.HTTP_OK, data.data, responseMessage.getKYBSuccess);
+        } else {
+            logger.error(data.body.message);
+            return response.errors(req, res, statusCodes.HTTP_BAD_REQUEST, data.body.message);
+        }
+    } catch (err) {
+        logger.error(responseMessage.getKYBFailure);
+        return response.errors(req, res, statusCodes.HTTP_INTERNAL_SERVER_ERROR, responseMessage.getKYBFailure);
+    }
+};
+
+TazaPayController.kybDocument = async (req, res, next) => {
+    try {
+        let data = await tazapayService.kybDocument(req);
+        if(data && data.data && data.data.application_id ){
+            logger.error(responseMessage.kycSuccess);
+            return response.success(req, res, statusCodes.HTTP_OK, data.data, data.message ? data.message : responseMessage.kycSuccess);
+        }else{
+            logger.error(responseMessage.kycFailure);
+            return response.errors(req, res, statusCodes.HTTP_BAD_REQUEST, data.body.message);
+        }
+    } catch (err) {
+        logger.error(responseMessage.kycFailure);
+        return response.errors(req, res, statusCodes.HTTP_INTERNAL_SERVER_ERROR, responseMessage.kycFailure);
+    }
+};
+
+TazaPayController.updateKYBDocument = async (req, res, next) => {
+    try {
+        let data = await tazapayService.updateKYBDocument(req);
+        if(data && data.data && data.data.application_id ){
+            logger.error(responseMessage.kycSuccess);
+            return response.success(req, res, statusCodes.HTTP_OK, data.data, data.message ? data.message : responseMessage.kycSuccess);
+        }else{
+            logger.error(responseMessage.kycFailure);
+            return response.errors(req, res, statusCodes.HTTP_BAD_REQUEST, data.body.message);
+        }
+    } catch (err) {
+        logger.error(responseMessage.kycFailure);
+        return response.errors(req, res, statusCodes.HTTP_INTERNAL_SERVER_ERROR, responseMessage.kycFailure);
+    }
+};
+
 TazaPayController.getInvoiceCurrency = async (req, res, next) => {
     try {
         let data = await tazapayService.getInvoiceCurrency(req.query);
