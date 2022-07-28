@@ -23,7 +23,7 @@ tazapayRoutes.get('/getRefundPaymentStatus', tazapay.getRefundPaymentStatus, taz
 // KYB Document
 tazapayRoutes.get('/kybDocument', tazapay.getKYBDocument, tazapayController.getKYBDocument);
 tazapayRoutes.post('/kybDocument', tazapay.kybDocument, tazapayController.kybDocument);
-tazapayRoutes.put('/kybDocument', tazapay.getKYBDocument, tazapayController.updateKYBDocument);
+tazapayRoutes.put('/kybDocument', tazapay.kybDocument, tazapayController.updateKYBDocument);
 
 // Config
 tazapayRoutes.get('/getInvoiceCurrency', tazapay.getInvoiceCurrency, tazapayController.getInvoiceCurrency);
